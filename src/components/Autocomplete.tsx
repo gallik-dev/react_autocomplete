@@ -19,14 +19,14 @@ export const Autocomplete: React.FC<Props> = ({
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
-    setIsOpen(false);
     onSelected(null);
+    setIsOpen(true);
   };
 
   const handleInputSelect = (person: Person) => {
     setQuery(person.name);
-    setIsOpen(true);
     onSelected(person);
+    setIsOpen(false);
   };
 
   useEffect(() => {
