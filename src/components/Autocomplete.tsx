@@ -19,7 +19,7 @@ export const Autocomplete: React.FC<Props> = ({
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
-    setIsOpen(true);
+    setIsOpen(false);
     onSelected(null);
   };
 
@@ -31,11 +31,13 @@ export const Autocomplete: React.FC<Props> = ({
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      if (query === '') {
+      const trimmedQuery = query.trim();
+
+      if (trimmedQuery === '') {
         return setSuggestions(people);
       }
 
-      const normalized = query.toLowerCase();
+      const normalized = trimmedQuery.toLowerCase();
       const filteredPeople = people.filter(person =>
         person.name.toLowerCase().includes(normalized),
       );
